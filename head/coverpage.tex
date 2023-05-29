@@ -10,65 +10,59 @@
 \definecolor{marronUni}{RGB}{68, 58, 49}
 \usetikzlibrary{calc}
 \begin{document}
-  \thispagestyle{empty}
-   \begin{center}
-    \begin{tikzpicture}[overlay,remember picture]
-      \coordinate (SW) at (current page.south west);
-      \coordinate (SE) at (current page.south east);
-      \coordinate (NW) at (current page.north west);
-      \coordinate (NE) at (current page.north east);
+\thispagestyle{empty}
+\begin{center}
+  \begin{tikzpicture}[overlay,remember picture]
+    \coordinate (SW) at (current page.south west);
+    \coordinate (SE) at (current page.south east);
+    \coordinate (NW) at (current page.north west);
+    \coordinate (NE) at (current page.north east);
 
-      \coordinate (anchorSceauA) at ($(SW)!.84!(SE)$);
-      \coordinate (anchorSceauB) at ($(SE)!0.25!(NE)$);
-      \coordinate (anchorSceau) at (anchorSceauA |- anchorSceauB);
+    \coordinate (anchorSceauA) at ($(SW)!.84!(SE)$);
+    \coordinate (anchorSceauB) at ($(SE)!0.25!(NE)$);
+    \coordinate (anchorSceau) at (anchorSceauA |- anchorSceauB);
 
-      \node[opacity=.075] at (anchorSceau) {\includegraphics[height=7.5cm]{pic/sceauUnivBord.png}};
-      \node[inner sep=5,anchor=north west] at ($(NW)!.05!(SE)$) {\includegraphics[height=2.5cm]{pic/ub}};
+    \node[opacity=.075] at (anchorSceau) {\includegraphics[height=7.5cm]{pic/sceauUnivBord.png}};
+    \node[inner sep=5,anchor=north west] at ($(NW)!.05!(SE)$) {\includegraphics[height=2.5cm]{pic/ub}};
 
-      \node[inner sep=5,anchor=north east] at ($(NE)!.05!(SW)$) {\includegraphics[height=2.5cm]{pic/inr_logo_rouge}};
-    \end{tikzpicture}
+    \node[inner sep=5,anchor=north east] at ($(NE)!.05!(SW)$) {\includegraphics[height=2.5cm]{pic/emg2.png}};
+  \end{tikzpicture}
 
-    \noindent \Large{\\THÈSE PRÉSENTÉE\\POUR OBTENIR LE GRADE DE\\}
-    \vspace*{1.5em}
-    \noindent \Huge \textbf{DOCTEUR DE \\L'UNIVERSITÉ DE BORDEAUX\\}
-    \vspace*{1.5em}
-    \noindent \Large{\bsc{École Doctorale Mathématiques et informatique\\Spécialité : Informatique\\}}
-    \vspace*{1.5em}
-    \noindent \Large{par \textbf{Adrien \bsc{Cassagne}}\\}
-    \vspace*{1.5em}
-    {
-      \color{bleuUni}\hrule} \vspace*{0.2cm}
-      \noindent {\fontsize{24}{24} \textbf{Méthodes d'optimisation et de parallélisation pour la radio logicielle}
-    }
-    \vspace*{0.2cm} {\color{bleuUni}\hrule}
-    \vspace*{1.5em}
-    \begin{tabular}{rl}
-      \Large{Co-directeurs de thèse : } & Denis \bsc{Barthou}   \\
-                                        & Christophe \bsc{Jégo} \\
-      \Large{Co-encadrants de thèse : } & Olivier \bsc{Aumage}  \\
-                                        & Camille \bsc{Leroux}  \\
-    \end{tabular}
+  \noindent \Large{\\THÈSE PRÉSENTÉE\\POUR OBTENIR LE GRADE DE\\}
+  \vspace*{1.5em}
+  \noindent \Huge \textbf{DOCTEUR DE \\L'UNIVERSITÉ DE BORDEAUX\\}
+  \vspace*{1.5em}
+  \noindent \Large{\bsc{École Doctorale \no 209: Sciences de l'ingénieur \\Spécialité : Électronique\\}}
+  \vspace*{1.5em}
+  \noindent \Large{par \textbf{Denis \bsc{Shemonaev}}\\}
+  \vspace*{1.5em}
+  {\color{bleuUni}\hrule}
+  \vspace*{0.2cm}
+  \noindent {\fontsize{24}{24} \textbf{Définition d'un environnement de~modélisation et de développement\\ pour la plateforme matérielle NATvision : intégration de fonctions d'apprentissage pour le traitement vidéo}\par
+  }
+  \vspace*{0.2cm}
+  {\color{bleuUni}\hrule}
+  \vspace*{1.5em}
+  \begin{tabular}{rl}
+    \Large{Co-directeurs de thèse : } & Christophe \bsc{Jégo} \\
+    \Large{Co-encadrants de thèse : } & Bertrand \bsc{Le Gal} \\
+                                      & Anthony \bsc{Besseau} \\
+  \end{tabular}
 
-    \vspace*{1.5em}
-    \noindent \Large préparée au Centre de Recherche Inria Bordeaux - Sud-Ouest et \\
-                     au Laboratoire de l'Intégration du Matériau au Système (IMS) \\
-    \vspace*{1.5em}
-    \noindent \large soutenue le 8 décembre 2020\\
-    \vspace*{1.5em}
-  \end{center}
+  \vspace*{1.5em}
+  \noindent \Large préparée au Laboratoire de l'Intégration du Matériau au Système (IMS) \\
+  \vspace*{1.5em}
+  \noindent \large soutenue le \\ %TODO Change
+  \vspace*{1.5em}
+\end{center}
 
-  \noindent \large \textbf{Jury :} \\
-  \vspace*{-1.5em}
-  \begin{center}
-    \begin{tabular}{lclclr}
-      Lionel     \textsc{Lacassagne} & - & Professeur des Universités  & - & Sorbonne Université    & \textit{Rapporteur}   \\
-      Matthieu   \textsc{Gautier}    & - & Maître de Conférences, HDR  & - & Université de Rennes 1 & \textit{Rapporteur}   \\
-      Michel     \textsc{Jezequel}   & - & Professeur des Universités  & - & IMT Atlantique         & \textit{Président}    \\
-      Cédric     \textsc{Bastoul}    & - & Directeur Scientifique, HDR & - & Huawei Paris           & \textit{Examinateur}  \\
-      Camille    \textsc{Leroux}     & - & Maître de Conférences       & - & Bordeaux INP           & \textit{Examinateur}  \\
-      Olivier    \textsc{Aumage}     & - & Chargé de Recherche, HDR    & - & Inria                  & \textit{Examinateur}  \\
-      Christophe \textsc{Jégo}       & - & Professeur des Universités  & - & Bordeaux INP           & \textit{Co-directeur} \\
-      Denis      \textsc{Barthou}    & - & Professeur des Universités  & - & Bordeaux INP           & \textit{Co-directeur} \\
-    \end{tabular}
-  \end{center}
+\noindent \large \textbf{Jury :} \\
+\vspace*{-1.5em}
+\begin{center}
+  \begin{tabular}{lclclr} %TODO Change
+    Lionel     \textsc{Lacassagne} & - & Professeur des Universités & - & Sorbonne Université    & \textit{Rapporteur} \\
+    Matthieu   \textsc{Gautier}    & - & Maître de Conférences, HDR & - & Université de Rennes 1 & \textit{Rapporteur} \\
+    Michel     \textsc{Jezequel}   & - & Professeur des Universités & - & IMT Atlantique         & \textit{Président}  \\
+  \end{tabular}
+\end{center}
 \end{document}

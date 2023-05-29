@@ -1,4 +1,4 @@
-# Adrien CASSAGNE's Ph.D. Thesis
+# Ph.D Thesis LaTeX Template
 
 ## Prerequisites
 

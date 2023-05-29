@@ -50,3 +50,4 @@ sample-*.pdf
 *.bcf
 doc
 tikz_cache
+*.code-workspace

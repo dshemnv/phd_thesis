@@ -6,7 +6,6 @@
 
 % Rubber configuration --------------------------------------------------------
 % rubber: setlist arguments --shell-escape
-
 % Packages --------------------------------------------------------------------
 \usepackage[english]{minitoc} % rappel du plan du chapitre en cours
 \usepackage{array}
@@ -57,6 +56,7 @@
 \renewcommand*{\bibfont}{\footnotesize} % package 'biblatex'
 \renewcommand*{\labelalphaothers}{\textsuperscript{+}} % package 'biblatex'
 
+
 % add column types for big table
 \newcolumntype{L}[1]{>{\raggedright\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
 \newcolumntype{C}[1]{>{\centering\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
@@ -73,22 +73,22 @@
 % package 'hyperref'
 \ifthenelse{\boolean{twosidedoc}}
 {
-\hypersetup{
-  pdfborder  = {0 0 0},
-  colorlinks = true,
-  linkcolor  = black,
-  citecolor  = black,
-  urlcolor   = grayMarronUni}
-\urlstyle{same}
+  \hypersetup{
+    pdfborder  = {0 0 0},
+    colorlinks = true,
+    linkcolor  = black,
+    citecolor  = black,
+    urlcolor   = grayMarronUni}
+  \urlstyle{same}
 }
 {
-\hypersetup{
-  pdfborder  = {0 0 0},
-  colorlinks = true,
-  linkcolor  = marronUni,
-  citecolor  = bleuUni,
-  urlcolor   = marronUni}
-\urlstyle{same}
+  \hypersetup{
+    pdfborder  = {0 0 0},
+    colorlinks = true,
+    linkcolor  = marronUni,
+    citecolor  = bleuUni,
+    urlcolor   = marronUni}
+  \urlstyle{same}
 }
 
 % separate multi-citations by a comma instead of a semicolon in 'biblatex'
@@ -99,24 +99,24 @@
   \printtext[bibhyperref]{%
     \printfield{labelprefix}%
     \ifkeyword{Cassagne}
-      {\printfield{labelnumber}}
-      {\printfield{labelalpha}%
-       \printfield{extraalpha}}}}
+    {\printfield{labelnumber}}
+    {\printfield{labelalpha}%
+      \printfield{extraalpha}}}}
 % configure 'biblatex' for the multibib
 \defbibenvironment{bibliographyNUM}
-  {\list
-     {\printtext[labelnumberwidth]{%
-        \printfield{labelprefix}%
-        \printfield{labelnumber}}}
-     {\setlength{\labelwidth}{\labelnumberwidth}%
-      \setlength{\leftmargin}{\labelwidth}%
-      \setlength{\labelsep}{\biblabelsep}%
-      \addtolength{\leftmargin}{\labelsep}%
-      \setlength{\itemsep}{\bibitemsep}%
-      \setlength{\parsep}{\bibparsep}}%
-      \renewcommand*{\makelabel}[1]{\hss##1}}
-  {\endlist}
-  {\item}
+{\list
+  {\printtext[labelnumberwidth]{%
+      \printfield{labelprefix}%
+      \printfield{labelnumber}}}
+  {\setlength{\labelwidth}{\labelnumberwidth}%
+    \setlength{\leftmargin}{\labelwidth}%
+    \setlength{\labelsep}{\biblabelsep}%
+    \addtolength{\leftmargin}{\labelsep}%
+    \setlength{\itemsep}{\bibitemsep}%
+    \setlength{\parsep}{\bibparsep}}%
+  \renewcommand*{\makelabel}[1]{\hss##1}}
+{\endlist}
+{\item}
 % % configure 'biblatex' back references text
 % \DefineBibliographyStrings{english}{%
 %     backrefpage  = {see p.}, % for single page number
@@ -133,7 +133,7 @@
 % combine the list of algorithms with the list of listings
 \makeatletter
 \AtBeginDocument{%
- \let\c@algocf\c@lstlisting
+  \let\c@algocf\c@lstlisting
 }
 \renewcommand{\algocf@list}{lol}%
 \renewcommand*\l@algocf{\@dottedtocline{1}{1.5em}{2.3em}}

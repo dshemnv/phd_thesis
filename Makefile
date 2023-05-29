@@ -12,39 +12,39 @@ FIGS_PDF=$(patsubst %.tex, %.pdf, $(FIGS_TEX))
 FIGS_CLR=$(patsubst %.pdf, %.clear, $(FIGS_PDF))
 FIGS_VCLR=$(patsubst %.pdf, %.vclear, $(FIGS_PDF))
 
-all: coverpage slice backcover figs
-	rubber --unsafe -d $(DOC_NAME).tex
+LTEX_COMPILE=latexmk
+LTEXMK_ARGS=-synctex=1 -interaction=nonstopmode -file-line-error -shell-escape -lualatex
+
+minitocdump:
+	@mkdir minitocdump
+
+all: coverpage figs minitocdump
+	$(LTEX_COMPILE) $(LTEXMK_ARGS) $(DOC_NAME).tex
 
 coverpage: head/coverpage.pdf
-slice: head/slice.pdf
-backcover: tail/backcover.pdf
 figs: $(FIGS_PDF)
 
 open:
 	xdg-open $(DOC_NAME).pdf &
 
 %.pdf: %.tex
-	cd $(<D) && rubber --unsafe -d $(<F)
+	cd $(<D) && $(LTEX_COMPILE) $(LTEXMK_ARGS) $(<F)
 
-clean: $(FIGS_CLR) coverpage_clear slice_clear backcover_clear document_clear clean4all
+clean: $(FIGS_CLR) coverpage_clear document_clear clean4all
 
 document_clear: $(DOC_NAME).clear
 coverpage_clear: head/coverpage.clear
-slice_clear: head/slice.clear
-backcover_clear: tail/backcover.clear
 
-mrproper: $(FIGS_VCLR) coverpage_vclear slice_vclear backcover_vclear document_vclear clean4all
+mrproper: $(FIGS_VCLR) coverpage_vclear document_vclear clean4all
 
 document_vclear: $(DOC_NAME).vclear
 coverpage_vclear: head/coverpage.vclear
-slice_vclear: head/slice.vclear
-backcover_vclear: tail/backcover.vclear
 
 %.clear: %.tex
-	cd $(<D) && rubber --clean $(<F)
+	cd $(<D) && $(LTEX_COMPILE) -c $(<F)
 
 %.vclear: %.tex
-	cd $(<D) && rubber --clean -d $(<F)
+	cd $(<D) && $(LTEX_COMPILE) -C $(<F)
 
 # to remove
 DIRS_BUILD=$(shell find ./ -type d -name 'build')
@@ -61,5 +61,5 @@ FILES_LOCK=$(shell find ./ -type f -name '*.auxlock')
 FILES_PYG=$(shell find ./ -type f -name '*.pyg')
 
 clean4all:
-	rm -rf $(DIRS_BUILD) $(DIRS_MINTED) $(DIRS_TIKZC)
+	rm -rf $(DIRS_BUILD) $(DIRS_MINTED) $(DIRS_TIKZC) minitocdump logs
 	rm -f $(FILES_MTC) $(FILES_BCF) $(FILES_LOL) $(FILES_XML) $(FILES_FLS) $(FILES_FDB) $(FILES_AUX) $(FILES_LOCK) $(FILES_PYG)

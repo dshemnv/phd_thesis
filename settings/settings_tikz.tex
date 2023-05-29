@@ -7,10 +7,8 @@
 \usepackage{etoolbox}
 \usepackage{xstring}
 \usepackage{circuitikz}
-\usepackage{tkz-kiviat}
 \usepackage{pgfplots}
 
-\input{main/chapter2/fig/polar/sc_gen_compression/settings/styles}
 \input{settings/colors} % file containing all the colors definitions
 
 \usetikzlibrary{external}
@@ -20,10 +18,10 @@
 \pgfplotsset{compat=newest}
 \usepgfplotslibrary{colorbrewer, groupplots}
 \tikzset{
-    hatch distance/.store in=\hatchdistance,
-    hatch distance=7pt,
-    hatch thickness/.store in=\hatchthickness,
-    hatch thickness=0.5pt
+  hatch distance/.store in=\hatchdistance,
+  hatch distance=7pt,
+  hatch thickness/.store in=\hatchthickness,
+  hatch thickness=0.5pt
 }
 
 \makeatletter
@@ -32,11 +30,11 @@
 {\pgfqpoint{\hatchdistance}{\hatchdistance}}
 {\pgfpoint{\hatchdistance-1pt}{\hatchdistance-1pt}}%
 {
-    \pgfsetcolor{\tikz@pattern@color}
-    \pgfsetlinewidth{\hatchthickness}
-    \pgfpathmoveto{\pgfqpoint{0pt}{0pt}}
-    \pgfpathlineto{\pgfqpoint{\hatchdistance}{\hatchdistance}}
-    \pgfusepath{stroke}
+  \pgfsetcolor{\tikz@pattern@color}
+  \pgfsetlinewidth{\hatchthickness}
+  \pgfpathmoveto{\pgfqpoint{0pt}{0pt}}
+  \pgfpathlineto{\pgfqpoint{\hatchdistance}{\hatchdistance}}
+  \pgfusepath{stroke}
 }
 \makeatletter
 \pgfdeclarepatternformonly[\hatchdistance,\hatchthickness]{flexible hatch north west}
@@ -44,11 +42,11 @@
 {\pgfqpoint{\hatchdistance}{\hatchdistance}}
 {\pgfpoint{\hatchdistance-1pt}{\hatchdistance-1pt}}%
 {
-    \pgfsetcolor{\tikz@pattern@color}
-    \pgfsetlinewidth{\hatchthickness}
-    \pgfpathmoveto{\pgfqpoint{\hatchdistance}{0pt}}
-    \pgfpathlineto{\pgfqpoint{0pt}{\hatchdistance}}
-    \pgfusepath{stroke}
+  \pgfsetcolor{\tikz@pattern@color}
+  \pgfsetlinewidth{\hatchthickness}
+  \pgfpathmoveto{\pgfqpoint{\hatchdistance}{0pt}}
+  \pgfpathlineto{\pgfqpoint{0pt}{\hatchdistance}}
+  \pgfusepath{stroke}
 }
 \makeatother
 
@@ -61,22 +59,22 @@
 \makeatother
 
 \makeatletter
-  \def\relativepath{\import@path}
+\def\relativepath{\import@path}
 \makeatother
 
 \newcommand{\inputtikz}[1]{%
-\begingroup%
-\IfSubStr{#1}{.pdf}{%
-\includegraphics{#1}%
-}{%
-\IfFileExists{#1.pdf}{%
-\includegraphics{#1}%
-}{%
-\newcommand{\datapath}{\relativepath}%
-\StrCount{#1}{/}[\matches]%
-\StrBehind[\matches]{#1}{/}[\filepath]%
-\StrBefore[\matches]{#1}{/}[\rootpath]%
-\subimport{\rootpath/}{\filepath}%
-}}%
-\endgroup%
+  \begingroup%
+  \IfSubStr{#1}{.pdf}{%
+    \includegraphics{#1}%
+  }{%
+    \IfFileExists{#1.pdf}{%
+      \includegraphics{#1}%
+    }{%
+      \newcommand{\datapath}{\relativepath}%
+      \StrCount{#1}{/}[\matches]%
+      \StrBehind[\matches]{#1}{/}[\filepath]%
+      \StrBefore[\matches]{#1}{/}[\rootpath]%
+      \subimport{\rootpath/}{\filepath}%
+    }}%
+  \endgroup%
 }

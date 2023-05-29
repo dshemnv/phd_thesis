@@ -1,0 +1,49 @@
+{
+	// "latex-workshop.latex.external.build.command": "make",
+	// "latex-workshop.latex.external.build.args": [
+	// 	"all"
+	// ],
+	"latex-workshop.latex.clean.command": "make",
+	"latex-workshop.latex.clean.args": [
+		"clean"
+	],
+	"latex-workshop.latex.recipe.default": "thesis",
+	"latex-workshop.latex.recipes": [
+		{
+			"name": "thesis",
+			"tools": [
+				"coverpage",
+				"latexmk"
+			]
+		}
+	],
+	"latex-workshop.latex.tools": [
+		{
+			"name": "latexmk",
+			"command": "latexmk",
+			"args": [
+				"-synctex=1",
+				"-interaction=nonstopmode",
+				"-file-line-error",
+				"-pdflatex",
+				"-shell-escape",
+				"-outdir=%OUTDIR%",
+				"%DOC%"
+			],
+			"env": {}
+		},
+		{
+			"name": "coverpage",
+			"command": "latexmk",
+			"args": [
+				"-synctex=1",
+				"-interaction=nonstopmode",
+				"-file-line-error",
+				"-pdflatex",
+				"-cd",
+				"%DIR%/head/coverpage.tex"
+			],
+			"env": {}
+		},
+	]
+}
