@@ -10,20 +10,22 @@
 \usepackage[english]{minitoc} % rappel du plan du chapitre en cours
 \usepackage{array}
 \usepackage{longtable} % pour la liste des notations
+\usepackage[nomain,nonumberlist,acronym,nogroupskip=true,nopostdot]{glossaries} % glossaire avec accronymes
 \usepackage[toc,page]{appendix}
 \usepackage{listings}
-\usepackage[english,onelanguage,ruled,linesnumbered,vlined]{algorithm2e}
+\usepackage[english,onelanguage,ruled,linesnumbered,vlined]{algorithm2e} % TODO Re enable this and changes algorithms
+% \usepackage{algorithm, algorithmic}
 \usepackage[
-  labelnumber  = true,
-  backend      = biber,
-  style        = alphabetic,
-  citestyle    = alphabetic,
-  maxnames     = 99,
-  defernumbers = true,
-  isbn         = false,
-  doi          = true,
-  backref      = true]{biblatex}
-\addbibresource{tail/bibliography.bib}
+	labelnumber  = true,
+	backend      = biber,
+	style        = alphabetic,
+	citestyle    = alphabetic,
+	maxnames     = 99,
+	defernumbers = true,
+	isbn         = false,
+	doi          = true,
+	backref      = true]{biblatex}
+\addbibresource{tail/biblio.bib}
 \usepackage{verbatim}
 \usepackage{booktabs}
 \usepackage{multirow}
@@ -37,10 +39,15 @@
 \usepackage{chngcntr}
 \usepackage{bm} % bold math
 \usepackage{geometry} % reduce margins
-\usepackage{subfig} % multi figures
 \usepackage{adjustbox} % rotate big table 90 degree
 \usepackage[strict]{changepage}
 \usepackage{tipa} % to make the phonetic "ə" for the AFF3CT pronunciation
+\usepackage{subcaption} % multi figures
+\usepackage{siunitx} % SI units
+\usepackage{todonotes}
+\usepackage{import}
+% \usepackage{asymptote} % Nice figures with asymptote
+% \def\asydir{asy_cache}
 
 % Parameters ------------------------------------------------------------------
 \setcounter{secnumdepth}{3} % package 'minitoc'
@@ -49,10 +56,10 @@
 \setminted{fontsize=\small,framesep=2mm,tabsize=4} % package 'minted'
 \usemintedstyle{friendly} % package 'minted'
 \counterwithin{listing}{chapter} % package 'chngcntr'
-\counterwithin{algocf}{chapter} % package 'chngcntr'
-\SetKwComment{Comment}{$\triangleright$\ }{} % package 'algorithm2e'
-\newcommand\mycommfont[1]{\small\ttfamily\textcolor{Comment}{#1}} % package 'algorithm2e'
-\SetCommentSty{mycommfont} % package 'algorithm2e'
+% \counterwithin{algocf}{chapter} % package 'chngcntr'
+% \SetKwComment{Comment}{$\triangleright$\ }{} % package 'algorithm2e'
+% \newcommand\mycommfont[1]{\small\ttfamily\textcolor{Comment}{#1}} % package 'algorithm2e'
+% \SetCommentSty{mycommfont} % package 'algorithm2e'
 \renewcommand*{\bibfont}{\footnotesize} % package 'biblatex'
 \renewcommand*{\labelalphaothers}{\textsuperscript{+}} % package 'biblatex'
 
@@ -64,6 +71,10 @@
 \newlength{\simcolwidth}
 \setlength{\simcolwidth}{0.5cm}
 
+% delete title from accronyms
+\renewcommand{\glossarysection}[2][]{}
+
+
 % configure a custom mini table of contents (% package 'minitoc')
 \renewcommand{\mtctitle}{}
 \tightmtctrue
@@ -73,22 +84,22 @@
 % package 'hyperref'
 \ifthenelse{\boolean{twosidedoc}}
 {
-  \hypersetup{
-    pdfborder  = {0 0 0},
-    colorlinks = true,
-    linkcolor  = black,
-    citecolor  = black,
-    urlcolor   = grayMarronUni}
-  \urlstyle{same}
+	\hypersetup{
+		pdfborder  = {0 0 0},
+		colorlinks = true,
+		linkcolor  = black,
+		citecolor  = black,
+		urlcolor   = grayMarronUni}
+	\urlstyle{same}
 }
 {
-  \hypersetup{
-    pdfborder  = {0 0 0},
-    colorlinks = true,
-    linkcolor  = marronUni,
-    citecolor  = bleuUni,
-    urlcolor   = marronUni}
-  \urlstyle{same}
+	\hypersetup{
+		pdfborder  = {0 0 0},
+		colorlinks = true,
+		linkcolor  = marronUni,
+		citecolor  = bleuUni,
+		urlcolor   = marronUni}
+	\urlstyle{same}
 }
 
 % separate multi-citations by a comma instead of a semicolon in 'biblatex'
@@ -96,25 +107,25 @@
 % configure 'biblatex' for the multibib
 \DeclareFieldFormat{labelnumberwidth}{\mkbibbrackets{#1}}
 \renewbibmacro*{cite}{%
-  \printtext[bibhyperref]{%
-    \printfield{labelprefix}%
-    \ifkeyword{Cassagne}
-    {\printfield{labelnumber}}
-    {\printfield{labelalpha}%
-      \printfield{extraalpha}}}}
+	\printtext[bibhyperref]{%
+		\printfield{labelprefix}%
+		\ifkeyword{Cassagne}
+		{\printfield{labelnumber}}
+		{\printfield{labelalpha}%
+			\printfield{extraalpha}}}}
 % configure 'biblatex' for the multibib
 \defbibenvironment{bibliographyNUM}
 {\list
-  {\printtext[labelnumberwidth]{%
-      \printfield{labelprefix}%
-      \printfield{labelnumber}}}
-  {\setlength{\labelwidth}{\labelnumberwidth}%
-    \setlength{\leftmargin}{\labelwidth}%
-    \setlength{\labelsep}{\biblabelsep}%
-    \addtolength{\leftmargin}{\labelsep}%
-    \setlength{\itemsep}{\bibitemsep}%
-    \setlength{\parsep}{\bibparsep}}%
-  \renewcommand*{\makelabel}[1]{\hss##1}}
+	{\printtext[labelnumberwidth]{%
+			\printfield{labelprefix}%
+			\printfield{labelnumber}}}
+	{\setlength{\labelwidth}{\labelnumberwidth}%
+		\setlength{\leftmargin}{\labelwidth}%
+		\setlength{\labelsep}{\biblabelsep}%
+		\addtolength{\leftmargin}{\labelsep}%
+		\setlength{\itemsep}{\bibitemsep}%
+		\setlength{\parsep}{\bibparsep}}%
+	\renewcommand*{\makelabel}[1]{\hss##1}}
 {\endlist}
 {\item}
 % % configure 'biblatex' back references text
@@ -131,12 +142,17 @@
 \def\chapter{\addtocontents{lol}{\protect\addvspace{10pt}}\Chapter}
 
 % combine the list of algorithms with the list of listings
+% \makeatletter
+% \AtBeginDocument{%
+%   \let\c@algocf\c@lstlisting
+% }
+% \renewcommand{\algocf@list}{lol}%
+% \renewcommand*\l@algocf{\@dottedtocline{1}{1.5em}{2.3em}}
+% \makeatother
+
+% don't externalize todo
 \makeatletter
-\AtBeginDocument{%
-  \let\c@algocf\c@lstlisting
-}
-\renewcommand{\algocf@list}{lol}%
-\renewcommand*\l@algocf{\@dottedtocline{1}{1.5em}{2.3em}}
+\renewcommand{\todo}[2][]{\tikzexternaldisable\@todo[#1]{#2}\tikzexternalenable}
 \makeatother
 
 % Math operators --------------------------------------------------------------
@@ -181,9 +197,9 @@
 \newcommand{\Cxy}[1]{\texttt{C++{#1}}\xspace}
 \newcommand{\CppUnit}{\texttt{CppUnit}\xspace}
 \newcommand{\Cline}[2]{
-  \noalign{\global\setlength{\Oldarrayrulewidth}{\arrayrulewidth}}
-  \noalign{\global\setlength{\arrayrulewidth}{#1}}\cline{#2}
-  \noalign{\global\setlength{\arrayrulewidth}{\Oldarrayrulewidth}}}
+	\noalign{\global\setlength{\Oldarrayrulewidth}{\arrayrulewidth}}
+	\noalign{\global\setlength{\arrayrulewidth}{#1}}\cline{#2}
+	\noalign{\global\setlength{\arrayrulewidth}{\Oldarrayrulewidth}}}
 \renewcommand\listoflistingscaption{List of Algorithms and Source Codes}
 \def\bl{big.\textsc{LITTLE}\xspace}
 \def\bigARM{big\xspace}
@@ -192,3 +208,20 @@
 \def\odrx{\textsc{Odroid-XU+E}\xspace}
 \def\juno{\textsc{Juno}\xspace}
 \def\mus{\si{\micro\second}}
+
+% ---- Abomination code to make first letter bold
+\makeatletter
+\newcommand*{\BoldAbbrv}[1]{%
+	\qrr@BoldAbbrv#1 \relax
+}
+\newcommand*{\eBoldAbbrv}[1]{%
+	\edef\qrr@BoldAbbrv@Arg{#1 }%
+	\expandafter\qrr@BoldAbbrv\qrr@BoldAbbrv@Arg\relax
+}
+\def\qrr@BoldAbbrv#1 #2\relax{%
+	\textbf#1\relax
+	\ifx\relax#2\else
+		\space\qrr@BoldAbbrv#2\relax
+	\fi
+}
+\makeatother

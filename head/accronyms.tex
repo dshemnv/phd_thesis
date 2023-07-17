@@ -1,0 +1,40 @@
+% Page d'accronymes
+% ---------------------------------------------------------------------------- %
+%                          Definitions (si nécessaire)                         %
+% ---------------------------------------------------------------------------- %
+
+% \newglossaryentry{fondue}
+% {
+% 	name=fondue,
+% 	description={is a Swiss dish consisting of melted cheese that is served in a communal pot heated over a portable stove using a candle or a spirit lamp. It is eaten with bread using long-stemmed forks. }
+% }
+
+% ---------------------------------------------------------------------------- %
+%                                  Accronymes                                  %
+% ---------------------------------------------------------------------------- %
+\newrobustcmd{\bffirst}[1]{\BoldAbbrv{#1}}
+\renewcommand{\glsnamefont}[1]{\textbf{#1}}
+
+
+\newacronymstyle{bf-long-short}%
+{%
+	\GlsUseAcrEntryDispStyle{long-short}%
+}%
+{%
+	\GlsUseAcrStyleDefs{long-short}%
+	\renewcommand*{\GenericAcronymFields}{description={\bffirst{\the\glslongtok}}}%
+}
+
+\setacronymstyle{bf-long-short}
+
+\newacronym{simd}{SIMD}{Single Instruction on Multiple Data}
+\newacronym{fpga}{FPGA}{Field Programmable Gate Array}
+\newacronym{sort}{SORT}{Simple Online Real-Time Tracking}
+\newacronym{iou}{IOU}{Intersection Over Union}
+\newacronym{yolo}{YOLO}{You Only Look Once}
+\newacronym{lsap}{LSAP}{Linear Sum Assignment Problem}
+\newacronym{hls}{HLS}{High Level Synthesis}
+\newacronym{le}{LE}{Logic Element}
+\newacronym{pe}{PE}{Processing Element}
+\newacronym{mot}{MOT}{Multiple Object Tracking}
+\makeglossaries

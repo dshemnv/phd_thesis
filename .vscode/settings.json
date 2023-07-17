@@ -3,6 +3,7 @@
 	// "latex-workshop.latex.external.build.args": [
 	// 	"all"
 	// ],
+	"latex-workshop.linting.lacheck.enabled": true,
 	"latex-workshop.latex.clean.command": "make",
 	"latex-workshop.latex.clean.args": [
 		"clean"
@@ -13,6 +14,15 @@
 			"name": "thesis",
 			"tools": [
 				"coverpage",
+				// "glossary",
+				"tikz_cache",
+				"latexmk",
+				// "glossary"
+			]
+		},
+		{
+			"name": "latexmk",
+			"tools": [
 				"latexmk"
 			]
 		}
@@ -40,10 +50,64 @@
 				"-interaction=nonstopmode",
 				"-file-line-error",
 				"-pdflatex",
-				"-cd",
-				"%DIR%/head/coverpage.tex"
+				"-outdir=%WORKSPACE_FOLDER%/head",
+				"%WORKSPACE_FOLDER%/head/coverpage.tex"
 			],
 			"env": {}
 		},
-	]
+		{
+			"name": "tikz_cache",
+			"command": "mkdir",
+			"args": [
+				"-p",
+				"tikz_cache"
+			]
+		}
+		// {
+		// 	"name": "glossary",
+		// 	"command": "makeglossaries",
+		// 	"args": [
+		// 		"my_thesis"
+		// 	],
+		// 	"env": {}
+		// }
+	],
+	"latex-workshop.latex.autoBuild.cleanAndRetry.enabled": false,
+	"ltex.language": "en-US",
+	"editor.fontLigatures": false,
+	"latex-workshop.view.pdf.viewer": "external",
+	"latex-workshop.view.pdf.external.viewer.command": "zathura",
+	"latex-workshop.view.pdf.external.viewer.args": [
+		"--synctex-editor-command",
+		"code --no-sandbox -r -g \"%{input}:%{line}\"",
+		"%PDF%"
+	],
+	"latex-workshop.view.pdf.external.synctex.command": "zathura",
+	"latex-workshop.view.pdf.external.synctex.args": [
+		"--synctex-forward=%LINE%:0:%TEX%",
+		"%PDF%"
+	],
+	// "latex-workshop.view.pdf.external.viewer.command": "okular",
+	// // @sync host=work-pc
+	// "latex-workshop.view.pdf.external.viewer.args": [
+	// 	"--unique",
+	// 	"%PDF%"
+	// ],
+	// // @sync host=work-pc
+	// "latex-workshop.view.pdf.external.synctex.command": "okular",
+	// // @sync host=work-pc
+	// "latex-workshop.view.pdf.external.synctex.args": [
+	// 	"--unique",
+	// 	"%PDF%#src:%LINE%%TEX%"
+	// ],
+	"todo-tree.general.tags": [
+		"BUG",
+		"HACK",
+		"FIXME",
+		"TODO",
+		"XXX",
+		"[ ]",
+		"[x]"
+	],
+	"todo-tree.regex.regex": "(//|%|#|<!--|;|/\\*|^|^[ \\t]*(-|\\d+.))\\s*($TAGS)",
 }
